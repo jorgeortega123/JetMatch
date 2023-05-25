@@ -4,7 +4,7 @@ import { useFormContext } from "../../context/MainContext";
 export const NumberSelect: React.FC = () => {
   const { setTimeInterval } = useFormContext();
   const [showOptions, setShowOptions] = useState(false);
-  const [selectedNumber, setSelectedNumber] = useState<number | null>(null);
+  const [selectedNumber, setSelectedNumber] = useState<number | 0>(0);
   const containerRef = useRef<HTMLDivElement>(null);
 
   const handleToggleOptions = () => {
@@ -66,6 +66,7 @@ export const NumberSelect: React.FC = () => {
         className="w-full py-2 px-4 border border-gray-300 bg-white rounded-md shadow-sm flex items-center justify-between focus:outline-none focus:border-blue-500"
         onClick={handleToggleOptions}
       >
+      
         <span>{arrtext[selectedNumber] || "Seleccione una opción"}</span>
         <svg
           className={`w-4 h-4 ml-2 transition-transform duration-200 transform ${

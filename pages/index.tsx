@@ -1,18 +1,24 @@
 import React, { useEffect, useRef, useState } from "react";
+import { useRouter } from "next/router";
 import Agregar from "../infra/agregar/Agregar";
 import CustomSelect from "../infra/agregar/Agregar";
-import Login from "../infra/login/Login";
+import Login from "./login";
+import { saludoSegunHora } from "../hooks/functions";
 import { useFormContext } from "../context/MainContext";
 import {
   addNewSegment,
   fetchObjectById,
   fetchSegment,
+  getUserDataById,
   updateSegment,
 } from "../database/db";
 import useModal from "../hooks/useModal";
 import Modal from "../components/modal/Modal";
 import FormularioEnlazar from "../infra/enlazar/FormularioEnlazar";
 import { Cuadrado } from "../components/cuadrado/Cuadrado";
+import dayjs from "dayjs";
+import { useUserContext } from "../context/UserContext";
+import { NavBar } from "../infra/navbar/TopNav";
 
 interface PropsSegment {
   createdAt: string;
@@ -24,9 +30,17 @@ interface PropsSegment {
   nameSegment: string;
   updatedAt: string;
   userId: string;
+  updateTimerAt: string;
+}
+
+interface userInfo {
+  name: string;
+  email: string;
+  verified: boolean;
 }
 
 export default function MainScreen() {
+  const router = useRouter();
   const [infoSegments, setinfoSegments] = useState<PropsSegment[] | undefined>([
     {
       createdAt: "2023-05-23T03:12:35.038Z",
@@ -38,46 +52,96 @@ export default function MainScreen() {
       typeOfRegister: 0,
       updatedAt: "2023-05-23T03:12:35.038Z",
       userId: "b77e18",
+      updateTimerAt: "",
     },
   ]);
 
   const { isLoginComplete, mustReload, createSegment } = useFormContext();
-  const [isLogin, setisLogin] = useState(true);
   const [showAddSegment, setshowAddSegment] = useState(false);
+  const { isLogin, setisLogin, successLogin, userInfo, isLoaded } =
+    useUserContext();
   useEffect(() => {
-    handleFecth();
-    // setisLogin(!isLogin)
-  }, [mustReload]);
+    if (!isLoaded) {
+      return;
+    } else {
+      if (isLogin === false) {
+        router.push("/login");
+      } else {
+        handleFecth();
+      }
+    }
+  }, [isLoaded, userInfo, mustReload])
+
   const handleFecth = async () => {
     var arr = [];
-    var s = await fetchSegment();
-    for (let i = 0; i < s.length; i++) {
-      let a = await fetchObjectById(s[i]);
+    var segmentsFromDb = await fetchSegment();
+    if (!segmentsFromDb) {
+      setisLogin(false);
+      return;
+    }
+    for (let i = 0; i < segmentsFromDb.length; i++) {
+      let a = await fetchObjectById(segmentsFromDb[i]);
       arr.push(a);
     }
-    console.log("asdas", arr);
     setinfoSegments(arr);
   };
+  // useEffect(() => {
+  //   setisLogin(!isLogin);
+  // }, [successLogin]);
+
+  const fechaActual = dayjs();
+  const horaMinutos = fechaActual.format("HH:mm");
+  const modal2 = useModal();
   // useEffect(() => {}, []);
-  if (isLogin) {
-    const modal = useModal();
-    const modal2 = useModal();
+  if (isLoaded===false || isLogin===false)  { 
+    return <p>Cargando...</p>
+  }
     return (
-      <div className="w-full">
+      <div className="w-full anim-opacity">
         <NavBar />
         <div className="pt-[46px] flex flex-col items-center">
-          <div className="max-w-[700px] w-full px-2 sm:w-[600px] gap-3 flex flex-col ">
-            <div className="m-1">
-              <p className="text-black font-[600] indent-1 text-xl">
-                Hola, Jorge
-              </p>{" "}
-              <p className="text-[#75CCEB] text-sm ">
-                Aqui tienes tu informacion
-              </p>{" "}
+          <div className="max-w-[700px] w-full px-2 sm:w-[600px] gap-3 flex flex-col mb-12 ">
+            <div className=" w-full h-[180px] flex justify-between border rounded-[6px] bg-white p-3 mt-3 relative">
+              <div>
+                <p className="text-black font-[600] text-[18px]">
+                  {saludoSegunHora()} {userInfo?.name?.split(" ")[0]}
+                </p>
+
+                <p className=" text-sm  h-full max-w-[260px] ">
+                  {userInfo.verified != false ? (
+                    <span>Hola!</span>
+                  ) : (
+                    <span className="">
+                      Gracias por entrar a la App, recuerda que para guardar tus
+                      datos puedes
+                      <span className="cursor-pointer relative span-slice underline font-herit px-[4px]">
+                        enlazar tu cuenta
+                        <span className="opacity-0 z-[-1] w-full absolute border bg-white p-2 rounded-[8px] left-[100%]">
+                          En la seccion de usuario la encontraras
+                        </span>
+                      </span>
+                      para acceder desde cualquier parte del mundo
+                    </span>
+                  )}
+                </p>
+              </div>
+              <div className="sticky">
+                <img
+                  draggable={false}
+                  className="h-full"
+                  src={
+                    "https://res.cloudinary.com/ddcoxtm2v/image/upload/v1685745720/22._success-3--success-interface-trophy-winner-champion-achieve-accomplish-mountain-peak-award-goal-man_k1iizc.png"
+                  }
+                  alt=""
+                />
+              </div>
+              <p className="absolute top-2 right-2 text-sm">{horaMinutos}</p>
             </div>
-            <div className="flex flex-col mb-1 mx-2 gap-3  ">
+            <div className="flex flex-col mb-1  gap-3   ">
               {infoSegments?.map((data) => (
                 <Cuadrado
+                  ultimoEdit={data.updateTimerAt}
+                  typeTime={data.timeInterval}
                   id={data.objectId}
                   nombre={data.nameSegment}
                   inicial={data.currentNumber}
@@ -85,98 +149,69 @@ export default function MainScreen() {
                 />
               ))}
             </div>
-            <button
-              style={{
-                transition: "all .4s",
-              }}
-              disabled={showAddSegment}
-              className="btn-segment-add p-2 w-max rounded-[7px] text-white font-bold text-sm bg-[#91216d] hover:bg-[#d22b9c]"
-              onClick={() => setshowAddSegment(!showAddSegment)}
-            >
-              AGREGAR SEGMENTO
-            </button>
-            {showAddSegment && (
-              <div className="p-2 m-1 border rounded-[6px]">
-                <Agregar setshowAddSegment={setshowAddSegment}></Agregar>
+            <div className="border-[1px] bg-white rounded-[6px] shadow-sm  p-2 mx-2 relative overflow-hidden">
+              <div
+                style={{
+                  borderImage:
+                    "linear-gradient(to right, rgb(255, 0, 0), rgb(0, 255, 0), rgb(0, 0, 255))",
+                  borderImageSlice: 1,
+                }}
+                className="absolute top-0 w-full h-[2px] left-0 border-[1px]"
+              ></div>
+              <div className="flex justify-center items-center ">
+                <div className="w-8/12 text-center">
+                  <p className="text-[13px] px-2 sm:px-5 ">
+                    Un botón para un mejor mañana: Registra, rastrea y alcanza
+                    tus metas día a día.
+                  </p>
+                </div>
+                <div
+                  style={{
+                    transition: "all .4s",
+                  }}
+                  className="btn-segment-add h-[130px] cursor-pointer w-5/12 flex flex-col gap-2 justify-center items-center p-2 border-[2px] border-dashed border-[#ccc] hover:border-[black] p-2 rounded-[7px]  font-bold text-sm text-black"
+                  onClick={() => modal2.open()}
+                >
+                  <svg
+                    className={` stroke-black `}
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <circle cx="12" cy="12" r="10" stroke-width="1.5" />
+                    <path
+                      d="M15 12L12 12M12 12L9 12M12 12L12 9M12 12L12 15"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                    />
+                  </svg>
+                  <h1 className="text-center w-full select-none">
+                    {" "}
+                    AGREGAR SEGMENTO
+                  </h1>
+                </div>
               </div>
-            )}
+            </div>
+
+            {/* {showAddSegment && (
+             */}
+            <Modal modal={modal2} title="Agregar nuevo segmento">
+              <div className="p-2 m-1 flex items-center justify-center">
+                <Agregar
+                  modal2={modal2}
+                  setshowAddSegment={setshowAddSegment}
+                ></Agregar>
+              </div>
+            </Modal>
+            {/*    
+            )} */}
           </div>
         </div>
-        <Modal modal={modal} title="Agregar nuevo segmento"></Modal>
+
         {/* <button onClick={modal.open}>AVTIVE MODAL</button> */}
       </div>
     );
-  } else {
-    return <Login setisLogin={setisLogin} />;
-  }
+
 }
-
-const NavBar: React.FC = () => {
-  const [showMenuUser, setShowMenuUser] = useState(false);
-  const modal = useModal();
-  const containerRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (
-        containerRef.current &&
-        !containerRef.current.contains(event.target as Node)
-      ) {
-        setShowMenuUser(false);
-      }
-    };
-
-    document.addEventListener("mousedown", handleClickOutside);
-
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, []);
- 
-  return (
-    <>
-      <nav className="nav-bar fixed w-full max-h-[46px] bg-[#fff] flex justify-between items-center">
-        <h1 className="font-bold text-[22px] px-2">JetMatch</h1>
-        <div className="flex flex-col py-[5px] px-[5px]">
-          <div
-            onClick={() => setShowMenuUser(!showMenuUser)}
-            className="cursor-pointer relative border rounded-full flex bg-[#e4e6eb]"
-          >
-            <svg width="36" height="36" viewBox="0 0 30 30">
-              <circle cx="15" cy="9" r="4" />
-              <ellipse cx="15" cy="20" rx="7" ry="4" />
-            </svg>
-            {showMenuUser && (
-              <div
-                ref={containerRef}
-                className="user-menu py-2 px-1 rounded-[7px] bg-[#fff] w-[180px] h-[100px] bg-slate-50 absolute top-[128%] right-0 text-[12px]"
-              >
-                <p
-                  className="hover:bg-gray-200 px-2 rounded-[6px]"
-                  onClick={modal.open}
-                >
-                  Enlazar cuenta
-                </p>
-                <p className="hover:bg-gray-200 px-2 rounded-[6px]">
-                  Archivados
-                </p>
-                <p
-                  className="hover:bg-gray-200 hover:text-red-700 px-2 rounded-[6px]"
-                  onClick={() => {
-                    setShowMenuUser(false);
-                    // Aquí puedes agregar la lógica para cerrar la sesión
-                  }}
-                >
-                  Cerrar sesión
-                </p>
-              </div>
-            )}
-          </div>
-        </div>
-        <Modal modal={modal} title={"Formulario para enlazar a cuenta"}>
-          <FormularioEnlazar />
-        </Modal>
-      </nav>
-    </>
-  );
-};

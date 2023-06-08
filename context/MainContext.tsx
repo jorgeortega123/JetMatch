@@ -27,6 +27,12 @@ interface FormData {
   password: string;
 }
 
+interface User {
+  name: string;
+  email: string;
+  isVerified: boolean;
+}
+
 const initialFormData: FormData = {
   name: "",
   email: "",
@@ -46,6 +52,7 @@ export const useFormContext = (): FormContextProps => {
 export const FormProvider: React.FC<React.PropsWithChildren<{}>> = ({
   children,
 }) => {
+  const [userInformation, setuserInformation] = useState<User | undefined>();
   const [formData, setFormData] = useState<FormData>(initialFormData);
   const [mustReload, setmustReload] = useState(false);
   const [isLoginComplete, setisLoginComplete] = useState(false);
@@ -55,10 +62,14 @@ export const FormProvider: React.FC<React.PropsWithChildren<{}>> = ({
   const [nameSegment, setNameSegment] = useState<string>("null");
   const [numbersInterval, setNumbersInterval] = useState<number>(0);
   const { message } = useMessage();
-  console.log(message);
+  // console.log(message);
   useEffect(() => {
-    createUser();
+  
   }, [typeOfRegister]);
+  const validateInfo = () => {
+    const info = createUser();
+  };
+
   const createSegment = async () => {
     // message({ type: "success", description: "djbgkjfgf" });
     function verificarEstados(): boolean {
@@ -83,7 +94,7 @@ export const FormProvider: React.FC<React.PropsWithChildren<{}>> = ({
         });
         anomaliasEncontradas = true;
       }
-      if (nameSegment === "null") {
+      if (nameSegment === "null" || nameSegment.length < 0) {
         message({
           type: "warning",
           description:
@@ -115,12 +126,21 @@ export const FormProvider: React.FC<React.PropsWithChildren<{}>> = ({
 
       message({
         type: "success",
-        description: "Puede que si...",
+        description: "Perfecto, se acaba de crear una nueva seccion",
       });
+      setNameSegment("");
+      setTypeOfRegister(0);
+      setTimeInterval(0);
+      setNumbersInterval(0);
       setmustReload(!mustReload);
       return;
+    } else {
+      message({
+        type: "error",
+        description: "Puede que algunos datos no sean correctos",
+      });
     }
-    setmustReload(!mustReload);
+
     // var e = addNewSegment({
     //   nameSegment: "0a",
     //   typeOfRegister: 0,

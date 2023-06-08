@@ -11,13 +11,18 @@ export const NumberSelect: React.FC = () => {
     setShowOptions(!showOptions);
   };
 
-  const handleNumberClick = (number: number) => {
+  const handleNumberClick = (number: number,value:number) => {
     
     setSelectedNumber(number);
-    setTimeInterval((number + 1));
+    setTimeInterval(value);
     setShowOptions(false);
   };
-  const arrtext= ["Cada 24 horas", "Cada 15 dias", "Cada mes (28 dias)", "Cada 6 meses"];
+  const arrtext = [
+    { text: "Cada dia", value: 24 },
+    { text: "Cada 15 dias", value: 360 },
+    { text: "Cada mes (28 dias)", value: 672 },
+    { text: "Cada 6 meses", value: 4320 },
+  ];
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (
@@ -51,9 +56,9 @@ export const NumberSelect: React.FC = () => {
         <div
           key={i}
           className="py-1 hover:bg-gray-100 cursor-pointer px-2 rounded-[6px]"
-          onClick={() => handleNumberClick(i)}
+          onClick={() => handleNumberClick(i, arrtext[i].value)}
         >
-          {arrtext[i]}
+          {arrtext[i]?.text}
         </div>
       );
     }
@@ -63,11 +68,11 @@ export const NumberSelect: React.FC = () => {
   return (
     <div ref={containerRef} className="relative z-3">
       <button
-        className="w-full py-2 px-4 border border-gray-300 bg-white rounded-md shadow-sm flex items-center justify-between focus:outline-none focus:border-blue-500"
+        className="w-full py-[5px] px-4 border border-gray-300 bg-white rounded-md shadow-sm flex items-center justify-between focus:outline-none focus:border-blue-500"
         onClick={handleToggleOptions}
       >
       
-        <span>{arrtext[selectedNumber] || "Seleccione una opción"}</span>
+        <span>{arrtext[selectedNumber]?.text || "Seleccione una opción"}</span>
         <svg
           className={`w-4 h-4 ml-2 transition-transform duration-200 transform ${
             showOptions ? "rotate-180" : ""

@@ -3,8 +3,8 @@ import { useFormContext } from "../../context/MainContext";
 
 export const CustomSelect: React.FC = () => {
     const [showOptions, setShowOptions] = useState(false);
-    const [selectedOption, setSelectedOption] = useState('');
-    const { setTypeOfRegister } = useFormContext();
+    const [selectedOption, setSelectedOption] = useState("");
+    const { setTypeOfRegister, typeOfRegister } = useFormContext();
   
     const options = [
       'Implemento de un nuevo hábito',
@@ -16,10 +16,12 @@ export const CustomSelect: React.FC = () => {
     const containerRef = useRef<HTMLDivElement>(null);
   
     useEffect(() => {
+      
       const handleClickOutside = (event: MouseEvent) => {
         if (containerRef.current && !containerRef.current.contains(event.target as Node)) {
           setShowOptions(false);
         }
+      
       };
   
       document.addEventListener('click', handleClickOutside);
@@ -42,7 +44,7 @@ export const CustomSelect: React.FC = () => {
     return (
       <div ref={containerRef} className="relative z-[3]">
         <button
-          className="w-full py-2 px-4 border border-gray-300 bg-white rounded-md shadow-sm flex items-center justify-between focus:outline-none focus:border-blue-500"
+          className="w-full py-[5px] px-4 border border-gray-300 bg-white rounded-md shadow-sm flex items-center justify-between focus:outline-none focus:border-blue-500"
           onClick={handleToggleOptions}
         >
           <span>{selectedOption || 'Seleccione una opción'}</span>

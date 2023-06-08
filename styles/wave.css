@@ -1,0 +1,19 @@
+.transition-wave {
+  animation: getUp 1.3s ease-in forwards;
+}
+.transition-login { 
+  animation: getDown 0.8s ease-in forwards;
+}
+@keyframes getUp {
+  /* Rotación inicial */
+  100% {
+    transform: translateY(-500px) rotate(180deg);
+  } /* Rotación completa */
+}
+
+@keyframes getDown {
+  /* Rotación inicial */
+  100% {
+    transform: translateY(1500px);
+  } /* Rotación completa */
+}

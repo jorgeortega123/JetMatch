@@ -6,7 +6,7 @@ export default function Document() {
       <Head>
         <script src="https://cdn.tailwindcss.com"></script>
       </Head>
-      <body className="bg-[#fff]">
+      <body className="bg-[#f0f2f5]">
         <Main />
         <NextScript />
       </body>

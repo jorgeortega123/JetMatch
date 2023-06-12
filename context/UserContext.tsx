@@ -35,7 +35,6 @@ export const UserProvider: React.FC<React.PropsWithChildren<{}>> = ({
 }) => {
   const router = useRouter();
   const [isLoaded, setisLoaded] = useState(false);
-
   const [isLogin, setisLogin] = useState<boolean>(false);
   const [successLogin, setsuccessLogin] = useState(false);
   const [mustReloadUser, setmustReloadUser] = useState(false);

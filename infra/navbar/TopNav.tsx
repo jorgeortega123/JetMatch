@@ -30,9 +30,8 @@ export const NavBar: React.FC = () => {
     };
   }, []);
   const handleClickLogOut = () => {
-    
     logOut();
-    
+
     setShowMenuUser(false);
   };
 
@@ -40,10 +39,11 @@ export const NavBar: React.FC = () => {
     <>
       <nav className="nav-bar fixed z-[3] w-full max-h-[46px] bg-[#fff] flex justify-between items-center">
         <h3 className="font-bold text-[22px] px-2">JetMatch</h3>
-        <div className="flex flex-col py-[5px] px-[5px]">
+        <div  onTouchStart={(e) => e.preventDefault()} className="flex flex-col py-[5px] px-[5px]">
           <div
-            onClick={() => setShowMenuUser(!showMenuUser)}
-            className="cursor-pointer relative border rounded-full flex bg-[#e4e6eb]"
+           onFocus={(e)=>e.preventDefault()}
+            onClick={(e) => {e.preventDefault();setShowMenuUser(!showMenuUser)}}
+            className=" cursor-pointer relative border rounded-full flex bg-[#e4e6eb]"
           >
             <svg width="36" height="36" viewBox="0 0 30 30">
               <circle cx="15" cy="9" r="4" />

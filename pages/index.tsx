@@ -107,7 +107,7 @@ export default function MainScreen() {
                   {saludoSegunHora()} {userInfo?.name?.split(" ")[0]}
                 </p>
 
-                <p className=" text-sm  h-full max-w-[260px] ">
+                <p className=" text-sm  h-full max-w-[260px] select-none ">
                   {userInfo.verified != false ? (
                     <span>Hola!</span>
                   ) : (

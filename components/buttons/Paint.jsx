@@ -49,7 +49,9 @@ export const ButtonWithLoading = ({ typeTime, ultimoEdit, inicial, id }) => {
 
       if (tiempoRestante > MINUTOS_POR_MES) {
         const meses = Math.floor(tiempoRestante / MINUTOS_POR_MES);
-        const dias = Math.floor((tiempoRestante % MINUTOS_POR_MES) / MINUTOS_POR_DIA);
+        const dias = Math.floor(
+          (tiempoRestante % MINUTOS_POR_MES) / MINUTOS_POR_DIA
+        );
         tiempoFormateado = `${meses}m${dias}d`;
       } else if (tiempoRestante > minutosDias) {
         const dias = Math.floor(tiempoRestante / minutosDias);
@@ -73,10 +75,13 @@ export const ButtonWithLoading = ({ typeTime, ultimoEdit, inicial, id }) => {
     return () => clearInterval(intervalId);
   }, [ultimoEdit, typeTime]);
 
-
-
   return (
-    <div className="p-[2px] relative ">
+    <div className="p-[2px] relative container-paint">
+      <div className="opacity-0 absolute bottom-[130%] w-full text-[12px] text-center p-2 rounded-[6px] bg-[#fff] modal-button-paint ">
+        <p className="">
+          Faltan: 23 dias para que puedas registar un nuevo cambio
+        </p>{" "}
+      </div>
       <div
         style={{
           background:
@@ -84,6 +89,7 @@ export const ButtonWithLoading = ({ typeTime, ultimoEdit, inicial, id }) => {
         }}
         className="rounded-[10px] top-0 left-0 absolute w-full h-full z-[-1]"
       ></div>
+
       <button
         className="z-[1] bg-slate-50 items-center font-[500] rounded-[10px] w-[140px] h-[44px] flex items-center justify-center"
         onClick={handleClick}

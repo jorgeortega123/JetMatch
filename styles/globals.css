@@ -172,6 +172,9 @@ body::-webkit-scrollbar-thumb:hover {
   opacity: 0.7;
   cursor: not-allowed;
 }
+* { 
+  outline: none;
+}
 
 .magic-button { 
   transition: all .3s;

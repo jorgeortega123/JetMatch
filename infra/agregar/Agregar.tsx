@@ -4,6 +4,7 @@ import { CustomSelect } from "../../components/agregar/CustomSelect";
 import { NumberSelect } from "../../components/agregar/NumberSelect";
 import { SquareSelect } from "../../components/agregar/SquareSelect";
 import { useFormContext } from "../../context/MainContext";
+import Icons from "../../styles/Icons";
 interface Props {
   setshowAddSegment: any;
   modal2: any;
@@ -34,15 +35,18 @@ const Agregar: React.FC<Props> = ({ setshowAddSegment, modal2 }) => {
 
   return (
     <div className="flex flex-col gap-2 mb-2 max-w-full rounded-[6px]">
-      <h4 className="text-dm">Escribe el nombre que pondras a tu actividad</h4>
+      <h4 className="text-sm">Escribe el nombre que pondras a tu actividad</h4>
       <TextInput></TextInput>
-      <h4 className="text-dm">Tipo de actividad que deseas registrar </h4>
+      <h4 className="text-sm">Tipo de actividad que deseas registrar </h4>
       <CustomSelect />
-      <h4 className="text-dm">Intervalo de tiempo entre dicha actividad</h4>
+      <h4 className="text-sm">Intervalo de tiempo entre dicha actividad</h4>
       <NumberSelect />
       <SquareSelect />
       <ColorSelect setcolorSelected={setcolorSelected} />
+      <Icons className="w-4 fill-green-500" icon="check" />
+      <Icons className="w-4 fill-yellow-500" icon="alert" />
 
+    
       <div className="flex justify-end gap-1 pt-3">
         <button
           onClick={() => {

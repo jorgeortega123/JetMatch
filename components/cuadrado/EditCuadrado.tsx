@@ -19,16 +19,16 @@ export default function EditCuadrado({
     <table className="flex flex-col gap-2 mb-2 max-w-[490px] border rounded-[6px] p-3">
       <tbody>
         <tr>
-          <td className="text-sm">Nombre puesto a la actividad:</td>
-          <td className="text-sm">{"Number"}</td>
+          <td className="text-sm text-[#323b43]">Nombre puesto a la actividad:</td>
+          <td className="text-sm">{nombre}</td>
         </tr>
         <tr>
           <td className="text-sm">Tipo de actividad a registrar:</td>
-          <td className="text-sm">{"NumberSelect"}</td>
+          <td className="text-sm">{typeTime}</td>
         </tr>
         <tr>
-          <td className="text-sm">Intervalo de tiempo:</td>
-          <td className="text-sm">{"Intervalo"}</td>
+          <td className="text-sm">Ultima edicion:</td>
+          <td className="text-sm">{ultimoEdit.slice(0,16)}</td>
         </tr>
       </tbody>
     </table>

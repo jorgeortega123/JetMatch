@@ -30,13 +30,13 @@ export const SquareSelect: React.FC = () => {
     <div className="flex flex-col space-y-2">
       <div className="">
         <div className="relative flex items-center justify-between gap-2">
-          <h4 className="w-12/12 text-dm">Cuantos cuadros son necesarios ?</h4>
+          <h4 className="w-12/12 text-sm">Cuantos cuadros son necesarios ?</h4>
           <input
             onChange={handleNumberChange}
             value={inputValue}
             type="number"
             id="number-input"
-            className={`w-2/12 px-4 py-2 border rounded-md shadow-sm focus:outline-none ${
+            className={`w-[46px] px-1 py-2 border rounded-md shadow-sm focus:outline-none ${
               isNegative || isExceeded ? "border-red-600" : "border-gray-300"
             }`}
           />

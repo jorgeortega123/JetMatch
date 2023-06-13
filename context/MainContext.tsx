@@ -18,6 +18,8 @@ interface FormContextProps {
   setisLoginComplete: React.Dispatch<React.SetStateAction<boolean>>;
   mustReload: boolean;
   setmustReload: React.Dispatch<React.SetStateAction<boolean>>;
+  onError: boolean;
+  errorMessage: string;
   createSegment: () => void;
 }
 
@@ -58,9 +60,11 @@ export const FormProvider: React.FC<React.PropsWithChildren<{}>> = ({
   const [isLoginComplete, setisLoginComplete] = useState(false);
   const [userId, setuserId] = useState<string>("null");
   const [typeOfRegister, setTypeOfRegister] = useState<number>(0);
-  const [timeInterval, setTimeInterval] = useState<number>(0);
+  const [timeInterval, setTimeInterval] = useState<number>(99);
   const [nameSegment, setNameSegment] = useState<string>("null");
   const [numbersInterval, setNumbersInterval] = useState<number>(0);
+  const [onError, setonError] = useState(false)
+  const [errorMessage, seterrorMessage] = useState("")
   const { message } = useMessage();
   // console.log(message);
   useEffect(() => {
@@ -74,11 +78,6 @@ export const FormProvider: React.FC<React.PropsWithChildren<{}>> = ({
     // message({ type: "success", description: "djbgkjfgf" });
     function verificarEstados(): boolean {
       let anomaliasEncontradas = false;
-
-      // if (userId === "null") {
-      //   message({ type: "warning", description: "El estado userId está vacío o establecido en su valor por defecto." });
-      //   anomaliasEncontradas = true;
-      // }
       if (typeOfRegister === 0) {
         message({
           type: "warning",
@@ -86,12 +85,8 @@ export const FormProvider: React.FC<React.PropsWithChildren<{}>> = ({
         });
         anomaliasEncontradas = true;
       }
-      if (timeInterval === 0) {
-        message({
-          type: "warning",
-          description:
-            "El estado timeInterval está vacío o establecido en su valor por defecto.",
-        });
+      if (timeInterval === 99) {
+        seterrorMessage("Completa el campo de tiempo de intervalo")
         anomaliasEncontradas = true;
       }
       if (nameSegment === "null" || nameSegment.length < 0) {
@@ -135,10 +130,12 @@ export const FormProvider: React.FC<React.PropsWithChildren<{}>> = ({
       setmustReload(!mustReload);
       return;
     } else {
-      message({
-        type: "error",
-        description: "Puede que algunos datos no sean correctos",
-      });
+      setonError(true)
+      seterrorMessage("Datos imcompletos")
+      // message({
+      //   type: "error",
+      //   description: "Puede que algunos datos no sean correctos",
+      // });
     }
 
     // var e = addNewSegment({
@@ -185,6 +182,8 @@ export const FormProvider: React.FC<React.PropsWithChildren<{}>> = ({
         mustReload,
         setmustReload,
         createSegment,
+        onError,
+        errorMessage
       }}
     >
       {children}

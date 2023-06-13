@@ -8,6 +8,7 @@ dayjs.extend(utc);
 export const ButtonWithLoading = ({ typeTime, ultimoEdit, inicial, id }) => {
   const [loading, setLoading] = useState(false);
   const [tiempoRestante, setTiempoRestante] = useState("");
+  const [tiempoRestanteDetallado, settiempoRestanteDetallado] = useState("");
   const { setmustReload, mustReload } = useFormContext();
 
   const handleClick = async () => {
@@ -46,6 +47,7 @@ export const ButtonWithLoading = ({ typeTime, ultimoEdit, inicial, id }) => {
       const MINUTOS_POR_MES = 30 * MINUTOS_POR_DIA;
 
       let tiempoFormateado = "";
+      let tiempoDetallado = "";
 
       if (tiempoRestante > MINUTOS_POR_MES) {
         const meses = Math.floor(tiempoRestante / MINUTOS_POR_MES);
@@ -53,15 +55,18 @@ export const ButtonWithLoading = ({ typeTime, ultimoEdit, inicial, id }) => {
           (tiempoRestante % MINUTOS_POR_MES) / MINUTOS_POR_DIA
         );
         tiempoFormateado = `${meses}m${dias}d`;
+        tiempoDetallado = `${meses} meses y ${dias} días`;
       } else if (tiempoRestante > minutosDias) {
         const dias = Math.floor(tiempoRestante / minutosDias);
-        tiempoFormateado = `${dias}d`;
+        tiempoFormateado = `${dias}días`;
+        tiempoDetallado = `${dias} días`;
       } else if (tiempoRestante > 60) {
         const horas = Math.floor(tiempoRestante / 60);
         const minutos = tiempoRestante % 60;
         tiempoFormateado = `${horas}h:${minutos}min`;
+        tiempoDetallado = `${horas} horas con ${minutos} minutos`;
       }
-
+      settiempoRestanteDetallado(tiempoDetallado);
       setTiempoRestante(tiempoFormateado);
     };
 
@@ -79,7 +84,8 @@ export const ButtonWithLoading = ({ typeTime, ultimoEdit, inicial, id }) => {
     <div className="p-[2px] relative container-paint">
       <div className="opacity-0 absolute bottom-[130%] w-full text-[12px] text-center p-2 rounded-[6px] bg-[#fff] modal-button-paint ">
         <p className="">
-          Faltan: 23 dias para que puedas registar un nuevo cambio
+          <span className="text-[#78828a]">Faltan:</span> <span className="text-black">{tiempoRestanteDetallado}</span> 
+          <span className="text-[#78828a]"> para registrar un nuevo cambio</span>
         </p>{" "}
       </div>
       <div

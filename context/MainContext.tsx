@@ -89,11 +89,11 @@ export const FormProvider: React.FC<React.PropsWithChildren<{}>> = ({
         seterrorMessage("Completa el campo de tiempo de intervalo")
         anomaliasEncontradas = true;
       }
-      if (nameSegment === "null" || nameSegment.length < 0) {
+      if (nameSegment === "null" || nameSegment.length >= 20) {
         message({
           type: "warning",
           description:
-            "El estado nameSegment está vacío o establecido en su valor por defecto.",
+            "El nombre del segmento es incorrecto",
         });
         anomaliasEncontradas = true;
       }
@@ -101,7 +101,7 @@ export const FormProvider: React.FC<React.PropsWithChildren<{}>> = ({
         message({
           type: "warning",
           description:
-            "El estado numbersInterval está vacío o establecido en su valor por defecto.",
+            "Indica cuantos cuadros son necesarios",
         });
         anomaliasEncontradas = true;
       }

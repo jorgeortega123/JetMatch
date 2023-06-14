@@ -35,18 +35,26 @@ const Agregar: React.FC<Props> = ({ setshowAddSegment, modal2 }) => {
 
   return (
     <div className="flex flex-col gap-2 mb-2 max-w-full rounded-[6px]">
-      <h4 className="text-sm">Escribe el nombre que pondras a tu actividad</h4>
+      <h4 className="text-sm relative ">
+        Escribe el nombre que pondras a tu actividad{" "}
+        <span className="text-[red]">*</span>{" "}
+      </h4>
       <TextInput></TextInput>
-      <h4 className="text-sm">Tipo de actividad que deseas registrar </h4>
+      <h4 className="text-sm">
+        Tipo de actividad que deseas registrar{" "}
+        <span className="text-[red]">*</span>{" "}
+      </h4>
       <CustomSelect />
-      <h4 className="text-sm">Intervalo de tiempo entre dicha actividad</h4>
+      <h4 className="text-sm">
+        Intervalo de tiempo entre dicha actividad{" "}
+        <span className="text-[red]">*</span>{" "}
+      </h4>
       <NumberSelect />
       <SquareSelect />
       <ColorSelect setcolorSelected={setcolorSelected} />
-      <Icons className="w-4 fill-green-500" icon="check" />
-      <Icons className="w-4 fill-yellow-500" icon="alert" />
+      {/* <Icons className="w-4 fill-green-500" icon="check" />
+      <Icons className="w-4 fill-yellow-500" icon="alert" /> */}
 
-    
       <div className="flex justify-end gap-1 pt-3">
         <button
           onClick={() => {
@@ -59,7 +67,7 @@ const Agregar: React.FC<Props> = ({ setshowAddSegment, modal2 }) => {
         </button>
         <button
           onClick={() => {
-            modal2.close();
+            // modal2.close();
             createSegment();
           }}
           className={`px-2 py-1 border rounded-[6px] bg-blue-500  text-white`}

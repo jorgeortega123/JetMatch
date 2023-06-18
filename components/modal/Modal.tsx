@@ -39,7 +39,7 @@ function Modal({
       <div
         ref={nodeRef}
         style={{ marginTop: 0 }}
-        className={`z-[11] fixed w-full h-screen top-0 left-0 z-[70] flex justify-center items-center py-16 dark:bg-zinc-700/70 bg-[#0000005e] backdrop-blur-[1px]`}
+        className={`z-[11] fixed w-full h-screen top-0 left-0 z-[70] flex justify-center items-center py-16  bg-[#0000005e] backdrop-blur-[2px]`}
       >
         <div
           onClick={() => closeModal()}
@@ -49,7 +49,7 @@ function Modal({
         <div
           ref={ref}
           {...props}
-          className={`z-[10] relative overflow-auto bg-white rounded-lg shadow max-h-full w-11/12 sm:max-w-[600px]  mx-auto`}
+          className={`z-[10] relative overflow-auto bg-zinc-50 dark:bg-zinc-800 dark:border-[2px] dark:border-zinc-700   rounded-lg shadow max-h-full w-11/12 sm:max-w-[600px]  mx-auto`}
         >
           <ModalClose closeModal={closeModal} text={title} />
           {props.delete && (

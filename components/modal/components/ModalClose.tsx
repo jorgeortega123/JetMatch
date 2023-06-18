@@ -1,7 +1,7 @@
 function ModalClose({ text, closeModal }: { text: any; closeModal: any }) {
   return (
     <div className="flex justify-between items-center p-2 mb-2 dark:border-zinc-50 border-zinc-900 relative ">
-      <h1 className="capitalize">{text}</h1>
+      <h1 className="capitalize text-black dark:text-white">{text}</h1>
       <div onClick={closeModal} className="cursor-pointer border rounded-full bg-[#e4e6eb]">
         <svg
           

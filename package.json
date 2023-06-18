@@ -26,6 +26,7 @@
   },
   "devDependencies": {
     "@types/parse": "^3.0.4",
-    "@types/react-transition-group": "^4.4.6"
+    "@types/react-transition-group": "^4.4.6",
+    "tailwindcss": "^3.3.2"
   }
 }

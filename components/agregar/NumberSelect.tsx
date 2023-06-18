@@ -68,7 +68,7 @@ export const NumberSelect: React.FC = () => {
   return (
     <div ref={containerRef} className="relative z-3">
       <button
-        className="w-full py-[5px] px-4 border border-gray-300 bg-white rounded-md shadow-sm flex items-center justify-between focus:outline-none focus:border-blue-500"
+        className="w-full py-[5px] px-4 border border-gray-300 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-900 rounded-md shadow-sm flex items-center justify-between focus:outline-none focus:border-blue-500"
         onClick={handleToggleOptions}
       >
       

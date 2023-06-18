@@ -44,7 +44,7 @@ export const CustomSelect: React.FC = () => {
     return (
       <div ref={containerRef} className="relative z-[3]">
         <button
-          className="w-full py-[5px] px-4 border border-gray-300 bg-white rounded-md shadow-sm flex items-center justify-between focus:outline-none focus:border-blue-500"
+          className="w-full py-[5px] px-4 border border-gray-300 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-900 rounded-md shadow-sm flex items-center justify-between focus:outline-none focus:border-blue-500"
           onClick={handleToggleOptions}
         >
           <span>{selectedOption || 'Seleccione una opción'}</span>
@@ -60,11 +60,11 @@ export const CustomSelect: React.FC = () => {
         </button>
         {showOptions && (
           <>
-            <div className=" absolute z-[1] top-full left-0 w-full py-2 px-2 mt-1 bg-white border border-blue-500 rounded-md shadow-sm">
+            <div className=" absolute z-[1] top-full left-0 w-full py-2 px-2 mt-1 bg-white dark:bg-slate-900 border border-blue-500 dark:border-blue-900 rounded-md shadow-sm">
               {options.map((option, index) => (
                 <div
                   key={option}
-                  className="py-1 hover:bg-gray-100 cursor-pointer px-2 rounded-[6px]"
+                  className="py-1 hover:bg-zinc-800 cursor-pointer px-2 rounded-[6px]"
                   onClick={() => handleOptionClick(option, index)}
                 >
                   {option}
@@ -75,4 +75,4 @@ export const CustomSelect: React.FC = () => {
         )}
       </div>
     );
-  };
+  }

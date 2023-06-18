@@ -1,3 +1,4 @@
+import { useThemeContext } from "../../context/ThemeContext";
 import useModal from "../../hooks/useModal";
 import { ButtonWithLoading } from "../buttons/Paint";
 import Modal from "../modal/Modal";
@@ -21,6 +22,7 @@ export const Cuadrado: React.FC<SquareProps> = ({
   id,
 }) => {
   const modal = useModal();
+  const {isDarkMode} = useThemeContext()
   const cuadrados: JSX.Element[] = [];
 
   // const totalCuadrados = Math.min(final, inicial + 8); // Asegurarse de que haya como máximo 8 cuadrados por fila
@@ -32,7 +34,7 @@ export const Cuadrado: React.FC<SquareProps> = ({
     // height: "20px",
     const estilo = {
       backgroundColor: isPintado ? "#75CCEB" : "transparent",
-      border: isPintado ? "1px solid #0060ff" : "1px solid #ccc",
+      border: isPintado ? "1px solid black" : ` ${isDarkMode ? "1px solid #433f75" : "1px solid #ccc"}`,
       display: "inline-block",
     };
 
@@ -49,7 +51,7 @@ export const Cuadrado: React.FC<SquareProps> = ({
       <Modal modal={modal} title={`Editar "${nombre}"`}>
         <EditCuadrado nombre={nombre} typeTime={typeTime} ultimoEdit={ultimoEdit} id={id} final={final} inicial={inicial} />
       </Modal>
-      <div className="border-[1px] rounded-[6px] shadow-sm  p-2 bg-white ">
+      <div className="border-[1px] dark:border-none text-black dark:text-zinc-50 rounded-[6px] shadow-sm  p-2 bg-zinc-50 dark:bg-zinc-800 ">
         <div className="flex gap-3 pl-3 pt-2 pr-2 justify-between items-center">
           <h1 onClick={() => modal.open()} className="text-md flex gap-1">
             {nombre}

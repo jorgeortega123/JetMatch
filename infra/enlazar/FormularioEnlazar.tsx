@@ -65,7 +65,7 @@ const FormularioEnlazar: React.FC<{ modal: any }> = ({ modal }) => {
     // Realizar validación o enviar los datos a la API aquí
   };
   return (
-    <form className=" max-w-sm mx-auto bg-white rounded ">
+    <form className=" max-w-sm mx-auto bg-slate-50 dark:bg-slate-900 rounded ">
       <div className="mb-4">
         <label htmlFor="nombre" className="block mb-1 font-medium">
           Nombre

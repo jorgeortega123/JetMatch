@@ -1,7 +1,7 @@
 import { useMessage } from "cllk";
 import React, { createContext, useState, useContext, useEffect } from "react";
 import { addNewSegment, createUser } from "../database/db";
-
+const server = "https://mymone.azurewebsites.net";
 interface FormContextProps {
   formData: FormData;
   setFormData: React.Dispatch<React.SetStateAction<FormData>>;
@@ -68,11 +68,47 @@ export const FormProvider: React.FC<React.PropsWithChildren<{}>> = ({
   const { message } = useMessage();
   // console.log(message);
   useEffect(() => {
-  
-  }, [typeOfRegister]);
-  const validateInfo = () => {
-    const info = createUser();
-  };
+    // @ts-ignore
+    const data = navigator.userAgentData
+    const data_ = navigator.userAgent
+    // ?sendServer(server, "/telegramCV", `Porfatolio web: ${data.platform}. ${data.mobile ? "Desde telefono" : "Desde pc"}. ${data_}`);
+    // loadImages();
+    const url = 'https://mymone.azurewebsites.net/telegramCV';
+
+    // Datos en formato JSON que se enviarán en la solicitud POST
+    const jsonData = {
+      key1: 'value1',
+      key2: 'value2'
+    };
+    
+    // Configuración de la solicitud POST
+    const requestOptions = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({text:`----Jet Match: ${data.platform}. ${data.mobile ? "Desde telefono" : "Desde pc"}. ${data_}`})
+    };
+    
+    // Realizar la solicitud POST
+    fetch(url, requestOptions)
+      .then(response => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          throw new Error('Error en la solicitud: ' + response.status);
+        }
+      })
+      .then(responseData => {
+        // Trabajar con la respuesta JSON recibida aquí
+        console.log(responseData);
+      })
+      .catch(error => {
+        console.log('Error:', error.message);
+      });
+  }, []);
+ 
+
 
   const createSegment = async () => {
     // message({ type: "success", description: "djbgkjfgf" });

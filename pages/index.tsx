@@ -19,6 +19,7 @@ import { Cuadrado } from "../components/cuadrado/Cuadrado";
 import dayjs from "dayjs";
 import { useUserContext } from "../context/UserContext";
 import { NavBar } from "../infra/navbar/TopNav";
+import { useThemeContext } from "../context/ThemeContext";
 
 interface PropsSegment {
   createdAt: string;
@@ -57,6 +58,7 @@ export default function MainScreen() {
   ]);
 
   const { isLoginComplete, mustReload, createSegment } = useFormContext();
+  const {isDarkMode} = useThemeContext()
   const [showAddSegment, setshowAddSegment] = useState(false);
   const { isLogin, setisLogin, successLogin, userInfo, isLoaded } =
     useUserContext();
@@ -97,13 +99,13 @@ export default function MainScreen() {
     return <p>Cargando...</p>
   }
     return (
-      <div className="w-full anim-opacity">
+      <div className="w-full anim-opacity bg-zinc-50 dark:bg-zinc-900">
         <NavBar />
         <div className="pt-[46px] flex flex-col items-center">
           <div className="max-w-[700px] w-full px-2 sm:w-[600px] gap-3 flex flex-col mb-12 ">
-            <div className=" w-full h-[180px] flex justify-between border rounded-[6px] bg-white p-3 mt-3 relative">
+            <div className="bg-white text-black dark:text-zinc-50 dark:bg-zinc-800 w-full h-[180px] flex justify-between rounded-[6px]  p-3 mt-3 relative">
               <div>
-                <p className="text-black font-[600] text-[18px]">
+                <p className=" font-[600] text-[18px]">
                   {saludoSegunHora()} {userInfo?.name?.split(" ")[0]}
                 </p>
 
@@ -116,7 +118,7 @@ export default function MainScreen() {
                       datos puedes
                       <span className="cursor-pointer relative span-slice underline font-herit px-[4px]">
                         enlazar tu cuenta
-                        <span className="opacity-0 z-[-1] w-full absolute border bg-white p-2 rounded-[8px] left-[100%]">
+                        <span className="opacity-0 z-[-1] w-full absolute border bg-zinc-50 p-2 rounded-[8px] left-[100%]">
                           En la seccion de usuario la encontraras
                         </span>
                       </span>
@@ -127,8 +129,9 @@ export default function MainScreen() {
               </div>
               <div className="sticky">
                 <img
+                 
                   draggable={false}
-                  className="h-full"
+                  className={`h-full img-to-dark ${isDarkMode ? "filter-img": ""}`}
                   src={
                     "https://res.cloudinary.com/ddcoxtm2v/image/upload/v1685745720/22._success-3--success-interface-trophy-winner-champion-achieve-accomplish-mountain-peak-award-goal-man_k1iizc.png"
                   }
@@ -149,7 +152,7 @@ export default function MainScreen() {
                 />
               ))}
             </div>
-            <div className="border-[1px] bg-white rounded-[6px] shadow-sm  p-2 mx-2 relative overflow-hidden">
+            <div className="border-[1px] dark:border-none text-zinc-900 dark:text-zinc-50 bg-zinc-50 dark:bg-zinc-800 rounded-[6px] shadow-sm  p-2 mx-2 relative overflow-hidden">
               <div
                 style={{
                   borderImage:
@@ -173,7 +176,7 @@ export default function MainScreen() {
                   onClick={() => modal2.open()}
                 >
                   <svg
-                    className={` stroke-black `}
+                    className={` stroke-black dark:stroke-white `}
                     width="24"
                     height="24"
                     viewBox="0 0 24 24"
@@ -187,7 +190,7 @@ export default function MainScreen() {
                       stroke-linecap="round"
                     />
                   </svg>
-                  <h1 className="text-center w-full select-none">
+                  <h1 className="text-center text-black dark:text-white w-full select-none">
                     {" "}
                     AGREGAR SEGMENTO
                   </h1>

@@ -34,7 +34,7 @@ const Agregar: React.FC<Props> = ({ setshowAddSegment, modal2 }) => {
   }, []);
 
   return (
-    <div className="flex flex-col gap-2 mb-2 max-w-full rounded-[6px]">
+    <div className="flex flex-col gap-2 mb-2 max-w-full rounded-[6px] text-zinc-900 dark:text-zinc-50">
       <h4 className="text-sm relative ">
         Escribe el nombre que pondras a tu actividad{" "}
         <span className="text-[red]">*</span>{" "}
@@ -61,7 +61,7 @@ const Agregar: React.FC<Props> = ({ setshowAddSegment, modal2 }) => {
             setshowAddSegment(false);
             modal2.close();
           }}
-          className="px-2 py-1 border border-blue-500 rounded-[6px] text-blue-500"
+          className="px-2 py-1 border border-blue-500 rounded-[6px] text-blue-500 dark:border-blue-600 dark:text-blue-300"
         >
           Cancelar
         </button>
@@ -70,7 +70,7 @@ const Agregar: React.FC<Props> = ({ setshowAddSegment, modal2 }) => {
             // modal2.close();
             createSegment();
           }}
-          className={`px-2 py-1 border rounded-[6px] bg-blue-500  text-white`}
+          className={`px-2 py-1 border rounded-[6px] bg-blue-500 dark:bg-blue-600 dark:border-blue-600  text-white`}
         >
           Añadir
         </button>
@@ -116,8 +116,8 @@ const TextInput: React.FC = () => {
           type="text"
           id="text-input"
           autoCapitalize="sentences"
-          className={`w-full px-4 py-[5px] border rounded-md shadow-sm focus:outline-none ${
-            isExceeded ? "border-red-600" : "border-gray-300"
+          className={`bg-zinc-50 dark:bg-zinc-900 w-full px-4 py-[5px]  border rounded-md shadow-sm focus:outline-none ${
+            isExceeded ? "border-red-600" : "border-gray-300 dark:border-zinc-700"
           }`}
           placeholder="Ingresa un nombre agradable"
         />

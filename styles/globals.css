@@ -240,3 +240,37 @@ body::-webkit-scrollbar-thumb:hover {
   border-bottom: 10px solid #fff;
 
  }
+
+ .img-to-dark { 
+  transition: filter .4s ;
+ }
+
+ .filter-img { 
+  filter: invert(100%);
+ }
+
+ .only-one-reading { 
+  opacity: 0;
+  transform: translateX(-50px);
+
+  animation: show-dark-mode-text-anim 5s forwards;
+  animation-delay: 3s;
+
+ }
+.delay-width {
+  transition: all .5s;
+}
+ @keyframes show-dark-mode-text-anim {
+  20% { 
+    opacity: 1;
+   transform: translateX(10px); 
+  }
+  70% { 
+    opacity: 1;
+    transform: translateX(10px); 
+  }
+  80% { 
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+ }

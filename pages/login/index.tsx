@@ -1,17 +1,20 @@
 import { useMessage } from "cllk";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
+import { useThemeContext } from "../../context/ThemeContext";
 import { useUserContext } from "../../context/UserContext";
 import { createUser, loginByEmail } from "../../database/db";
+import Icons from "../../styles/Icons";
 
 interface LoginProps {
   setisLogin?: (value: boolean) => void;
 }
 
-const Login: React.FC<LoginProps> = ({  }) => {
+const Login: React.FC<LoginProps> = ({}) => {
+  const { toggleTheme } = useThemeContext();
   const router = useRouter();
   const { message } = useMessage();
-  const {setisLogin, setsuccessLogin} = useUserContext()
+  const { setisLogin, setsuccessLogin } = useUserContext();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isFetching, setisFetching] = useState(false);
@@ -35,22 +38,20 @@ const Login: React.FC<LoginProps> = ({  }) => {
     // var s = await createUser();
     setisFetching(true);
     var log = () => {
-      var local = localStorage.getItem("token")
-      if (!local) { 
+      var local = localStorage.getItem("token");
+      if (!local) {
         message({
           type: "error",
-          description:
-            "No se pudo crear un sesion",
+          description: "No se pudo crear un sesion",
         });
         setisFetching(false);
-        return
+        return;
       }
       message({
         type: "success",
-        description:
-          "Bienvenido!",
+        description: "Bienvenido!",
       });
-      setisLogin(true)
+      setisLogin(true);
       router.push("/");
       // setTimeout(() => {
       //   setisSuccessFetch(true);
@@ -77,20 +78,18 @@ const Login: React.FC<LoginProps> = ({  }) => {
       } else {
         message({
           type: "error",
-          description:
-            "Error creando el usuario",
+          description: "Error creando el usuario",
         });
         setisFetching(false);
       }
     } else {
-      var res_0:boolean = await loginByEmail(email, password);
+      var res_0: boolean = await loginByEmail(email, password);
       if (res_0 === false) {
         log();
       } else {
         message({
           type: "error",
-          description:
-            "Usuario y/o contrasena no valida",
+          description: "Usuario y/o contrasena no valida",
         });
         setisFetching(false);
       }
@@ -101,6 +100,10 @@ const Login: React.FC<LoginProps> = ({  }) => {
   };
   return (
     <div className=" relative flex items-center justify-center h-screen bg-gray-100 overflow-hidden">
+      <div className="absolute top-2 left-2 z-[2] flex items-center" onClick={() => toggleTheme()}>
+        <Icons icon="dark" className="fill-black border"></Icons>
+        <span className="text-[12px] only-one-reading ">Tema claro</span>
+      </div>
       <div className={``}>
         <svg
           className={`${
@@ -156,7 +159,7 @@ const Login: React.FC<LoginProps> = ({  }) => {
             <h2 className="text-[30px] font-bold text-center">Jet Match</h2>
             <div className="w-[220px]">
               <img
-                  draggable={false}
+                draggable={false}
                 src="https://res.cloudinary.com/ddcoxtm2v/image/upload/v1685672962/8._interface-testing_wc6toa.png"
                 alt=""
               />
@@ -243,7 +246,11 @@ const Login: React.FC<LoginProps> = ({  }) => {
         </div>
 
         <p className="text-center text-gray-500 text-xs">
-          &copy; 2023 Jet match. Desarrollado por <a href="https://jorge-ortega.pages.dev/" target={"_blank"}>Jorge Ortega</a>.
+          &copy; 2023 Jet match. Desarrollado por{" "}
+          <a href="https://jorge-ortega.pages.dev/" target={"_blank"}>
+            Jorge Ortega
+          </a>
+          .
         </p>
       </div>
       <div className="absolute bottom-0 w-screen hidden ">

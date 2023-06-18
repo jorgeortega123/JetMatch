@@ -82,10 +82,10 @@ export const ButtonWithLoading = ({ typeTime, ultimoEdit, inicial, id }) => {
 
   return (
     <div className="p-[2px] relative container-paint">
-      <div className="opacity-0 absolute bottom-[130%] w-full text-[12px] text-center p-2 rounded-[6px] bg-[#fff] modal-button-paint ">
+      <div className="opacity-0 absolute bottom-[130%] w-full text-[12px] text-center p-2 rounded-[6px] bg-zinc-50 dark:bg-zinc-800 modal-button-paint dark:shadow-zinc-800 ">
         <p className="">
-          <span className="text-[#78828a]">Faltan:</span> <span className="text-black">{tiempoRestanteDetallado}</span> 
-          <span className="text-[#78828a]"> para registrar un nuevo cambio</span>
+          <span className="text-zinc-900 dark:text-zinc-50">Faltan:</span> <span className="text-zinc-800 dark:text-zinc-50">{tiempoRestanteDetallado}</span> 
+          <span className="text-zinc-900 dark:text-zinc-50"> para registrar un nuevo cambio</span>
         </p>{" "}
       </div>
       <div
@@ -97,7 +97,7 @@ export const ButtonWithLoading = ({ typeTime, ultimoEdit, inicial, id }) => {
       ></div>
 
       <button
-        className="z-[1] bg-slate-50 items-center font-[500] rounded-[10px] w-[140px] h-[44px] flex items-center justify-center"
+        className="z-[1] bg-zinc-50 dark:bg-zinc-900 items-center font-[500] rounded-[10px] w-[140px] h-[44px] flex  justify-center"
         onClick={handleClick}
         disabled={loading || tiempoRestante !== ""}
       >
@@ -146,15 +146,16 @@ export const ButtonWithLoading = ({ typeTime, ultimoEdit, inicial, id }) => {
           </svg>
         ) : (
           <svg
-            className="z-[1]"
+            className="z-[1] stroke-black dark:stroke-white"
             xmlns="http://www.w3.org/2000/svg"
             width="24"
             height="36"
             viewBox="0 0 48 48"
           >
             <g
-              fill="none"
-              stroke="currentColor"
+
+        
+
               strokeLinecap="round"
               strokeLinejoin="round"
               strokeWidth="3"

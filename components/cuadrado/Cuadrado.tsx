@@ -34,7 +34,7 @@ export const Cuadrado: React.FC<SquareProps> = ({
     // height: "20px",
     const estilo = {
       backgroundColor: isPintado ? "#75CCEB" : "transparent",
-      border: isPintado ? "1px solid black" : ` ${isDarkMode ? "1px solid #433f75" : "1px solid #ccc"}`,
+      border: isPintado ? "1px solid black" : ` ${isDarkMode ? "1px solid  #3f3f46" : "1px solid #ccc"}`,
       display: "inline-block",
     };
 

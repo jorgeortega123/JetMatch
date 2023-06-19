@@ -19,15 +19,34 @@ export const useThemeContext = (): ThemeContextProps => {
 export const ThemeProvider: React.FC<React.PropsWithChildren<{}>> = ({
   children,
 }) => {
-  const [isDarkMode, setisDarkMode] = useState(false);
-  const toggleTheme = () => {
-    if (!isDarkMode) {
+  const [isDarkMode, setIsDarkMode] = useState(false);
+
+  useEffect(() => {
+    const itemTheme = localStorage.getItem("theme");
+    const prefersDarkMode = window.matchMedia(
+      "(prefers-color-scheme: dark)"
+    ).matches;
+
+    if (!itemTheme) {
+      setIsDarkMode(prefersDarkMode);
+    } else {
+      setIsDarkMode(itemTheme === "dark");
+    }
+  }, []);
+
+  useEffect(() => {
+    if (isDarkMode) {
       document.documentElement.classList.add("dark");
-      setisDarkMode(true);
     } else {
       document.documentElement.classList.remove("dark");
-      setisDarkMode(false);
     }
+
+    // Actualizar el valor en localStorage
+    localStorage.setItem("theme", isDarkMode ? "dark" : "light");
+  }, [isDarkMode]);
+
+  const toggleTheme = () => {
+    setIsDarkMode((prevMode) => !prevMode);
   };
   const t = {
     darkMode: "class",
@@ -47,7 +66,6 @@ export const ThemeProvider: React.FC<React.PropsWithChildren<{}>> = ({
           800: "#1F222A",
           900: "#000000",
         },
-    
       },
     },
   };

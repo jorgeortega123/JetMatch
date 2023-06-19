@@ -10,7 +10,7 @@ export default function Document() {
       <Head>
         <script src="https://cdn.tailwindcss.com"></script>
       </Head>
-      <body className="bg-[#f0f2f5]">
+      <body className="bg-zinc-50 dark:bg-zinc-900">
         <Main />
         <NextScript />
       </body>

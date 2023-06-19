@@ -40,8 +40,8 @@ export const NavBar: React.FC = () => {
 
   return (
     <>
-      <nav className="nav-bar fixed z-[3] w-full max-h-[46px] bg-[#fff] dark:bg-[#2A2D3A] flex justify-between items-center">
-        <h3 className="font-bold text-[22px] px-2 text-black dark:text-[#f0f8ff]">JetMatch</h3>
+      <nav className="nav-bar fixed z-[3] w-full max-h-[46px] bg-[#fff] dark:bg-zinc-900 flex justify-between items-center">
+        <h3 className="font-bold text-[22px] px-2 text-black dark:text-[#f0f8ff] transition-text">JetMatch</h3>
       
         <div className="flex gap-2 items-center py-[5px] px-[5px] ">
           <div className="flex relative " onClick={()=>toggleTheme()}>
@@ -50,9 +50,9 @@ export const NavBar: React.FC = () => {
           </div>
           <div
             onClick={(e) => {e.preventDefault();setShowMenuUser(!showMenuUser)}}
-            className=" cursor-pointer relative border rounded-full flex bg-[#e4e6eb]"
+            className=" cursor-pointer relative  rounded-full flex bg-[#e4e6eb] dark:bg-slate-700"
           >
-            <svg width="36" height="36" viewBox="0 0 30 30">
+            <svg className="fill-zinc-900 dark:fill-zinc-50" width="36" height="36" viewBox="0 0 30 30">
               <circle cx="15" cy="9" r="4" />
               <ellipse cx="15" cy="20" rx="7" ry="4" />
             </svg>

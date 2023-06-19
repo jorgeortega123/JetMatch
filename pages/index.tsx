@@ -99,7 +99,7 @@ export default function MainScreen() {
     return <p>Cargando...</p>
   }
     return (
-      <div className="w-full anim-opacity bg-zinc-50 dark:bg-zinc-900">
+      <div className="w-full anim-">
         <NavBar />
         <div className="pt-[46px] flex flex-col items-center">
           <div className="max-w-[700px] w-full px-2 sm:w-[600px] gap-3 flex flex-col mb-12 ">

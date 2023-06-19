@@ -82,7 +82,7 @@ export const ButtonWithLoading = ({ typeTime, ultimoEdit, inicial, id }) => {
 
   return (
     <div className="p-[2px] relative container-paint">
-      <div className="opacity-0 absolute bottom-[130%] w-full text-[12px] text-center p-2 rounded-[6px] bg-zinc-50 dark:bg-zinc-800 modal-button-paint dark:shadow-zinc-800 ">
+      <div className="opacity-0 absolute bottom-[130%] w-full text-[12px] text-center p-2 rounded-[6px] bg-zinc-50 dark:bg-zinc-800 modal-button-paint shadow-md dark:shadow-zinc-700 ">
         <p className="">
           <span className="text-zinc-900 dark:text-zinc-50">Faltan:</span> <span className="text-zinc-800 dark:text-zinc-50">{tiempoRestanteDetallado}</span> 
           <span className="text-zinc-900 dark:text-zinc-50"> para registrar un nuevo cambio</span>

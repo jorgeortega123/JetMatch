@@ -11,7 +11,7 @@ interface LoginProps {
 }
 
 const Login: React.FC<LoginProps> = ({}) => {
-  const { toggleTheme } = useThemeContext();
+  const { toggleTheme, isDarkMode } = useThemeContext();
   const router = useRouter();
   const { message } = useMessage();
   const { setisLogin, setsuccessLogin } = useUserContext();
@@ -99,7 +99,7 @@ const Login: React.FC<LoginProps> = ({}) => {
     // console.log(s);
   };
   return (
-    <div className=" relative flex items-center justify-center h-screen bg-gray-100 overflow-hidden">
+    <div className=" relative flex items-center justify-center h-screen bg-zinc-50 dark:bg-zinc-900 overflow-hidden">
       <div className="absolute top-2 left-2 z-[2] flex items-center" onClick={() => toggleTheme()}>
         <Icons icon="dark" className="fill-black border"></Icons>
         <span className="text-[12px] only-one-reading ">Tema claro</span>
@@ -124,9 +124,9 @@ const Login: React.FC<LoginProps> = ({}) => {
           transitionScreen ? "transition-login" : ""
         } w-full max-w-md z-[2] `}
       >
-        <div className="bg-white rounded-lg shadow-md px-2  pt-6 pb-8 mb-4 relative ">
+        <div className="bg-white dark:bg-zinc-800 text-zinc-900 dark:text-zinc-50 rounded-lg shadow-md px-2  pt-6 pb-8 mb-4 relative ">
           {isFetching && (
-            <div className="absolute bg-[#ffffffc7] rounded-[6px] w-full h-full top-0 left-0 flex items-center justify-center ">
+            <div className="absolute bg-[#ffffffc7] dark:bg-zinc-500/40 rounded-[6px] w-full h-full top-0 left-0 flex items-center justify-center ">
               <div className="mt-[220px] text-black">
                 <div className="flex flex-col items-center justify-center relative">
                   <div
@@ -159,6 +159,7 @@ const Login: React.FC<LoginProps> = ({}) => {
             <h2 className="text-[30px] font-bold text-center">Jet Match</h2>
             <div className="w-[220px]">
               <img
+              className={`h-full img-to-dark ${isDarkMode ? "filter-img": ""}`}
                 draggable={false}
                 src="https://res.cloudinary.com/ddcoxtm2v/image/upload/v1685672962/8._interface-testing_wc6toa.png"
                 alt=""
@@ -173,13 +174,13 @@ const Login: React.FC<LoginProps> = ({}) => {
           <div className=" px-5 rounded-[6px]">
             <div className="mb-4">
               <label
-                className="block text-gray-700 text-sm font-bold mb-2"
+                className="block text-zinc-900 dark:text-zinc-50 text-sm font-bold mb-2"
                 htmlFor="email"
               >
                 Correo electrónico
               </label>
               <input
-                className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:border-blue-500"
+                className="bg-zinc-50 dark:bg-zinc-900  appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight border-gray-300 dark:border-zinc-700 focus:outline-none focus:border-blue-500"
                 id="email"
                 type="email"
                 placeholder="Ingrese su correo electrónico"
@@ -189,13 +190,13 @@ const Login: React.FC<LoginProps> = ({}) => {
             </div>
             <div className="mb-6">
               <label
-                className="block text-gray-700 text-sm font-bold mb-2"
+                className="block text-zinc-900 dark:text-zinc-50 text-sm font-bold mb-2"
                 htmlFor="password"
               >
                 Contraseña
               </label>
               <input
-                className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:border-blue-500"
+                className="bg-zinc-50 dark:bg-zinc-900  appearance-none border rounded w-full py-2 px-3 text-gray-700 border-gray-300 dark:border-zinc-700 leading-tight focus:outline-none focus:border-blue-500"
                 id="password"
                 type="password"
                 placeholder="Ingrese su contraseña"

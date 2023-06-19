@@ -65,7 +65,7 @@ const FormularioEnlazar: React.FC<{ modal: any }> = ({ modal }) => {
     // Realizar validación o enviar los datos a la API aquí
   };
   return (
-    <form className=" max-w-sm mx-auto bg-slate-50 dark:bg-slate-900 rounded ">
+    <form className=" max-w-sm mx-auto bg-zinc-50 dark:bg-zinc-800 rounded  text-zinc-900 dark:text-zinc-50">
       <div className="mb-4">
         <label htmlFor="nombre" className="block mb-1 font-medium">
           Nombre
@@ -76,7 +76,7 @@ const FormularioEnlazar: React.FC<{ modal: any }> = ({ modal }) => {
           value={nombre}
           placeholder="Tu nombre"
           onChange={(e) => setNombre(e.target.value)}
-          className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:border-blue-500"
+          className="w-full px-3 py-2 border bg-zinc-50 dark:bg-zinc-900 border-gray-300 dark:border-zinc-700 rounded focus:outline-none focus:border-blue-500"
         />
       </div>
 
@@ -90,7 +90,7 @@ const FormularioEnlazar: React.FC<{ modal: any }> = ({ modal }) => {
           disabled
           value={id}
           onChange={(e) => setId(e.target.value)}
-          className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:border-blue-500"
+          className="w-full px-3 py-2 border bg-zinc-50 dark:bg-zinc-900 border-gray-300 dark:border-zinc-700 rounded focus:outline-none focus:border-blue-500"
         />
       </div>
 
@@ -104,8 +104,8 @@ const FormularioEnlazar: React.FC<{ modal: any }> = ({ modal }) => {
           id="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          className={`w-full px-3 py-2 border ${
-            emailError ? "border-red-500" : "border-gray-300"
+          className={`w-full px-3 py-2 border bg-zinc-50 dark:bg-zinc-900 ${
+            emailError ? "border-red-500" : "border-gray-300 dark:border-zinc-700"
           } rounded focus:outline-none focus:border-blue-500`}
         />
         {emailError && (
@@ -115,7 +115,7 @@ const FormularioEnlazar: React.FC<{ modal: any }> = ({ modal }) => {
       {userInfo.verified != false ? (
         <>
           {" "}
-          <p className=" border rounded-[6px] p-[3px] font-[input] text-[14px]">
+          <p className=" border rounded-[6px] p-[3px] font-[input] text-[14px] border-gray-300 dark:border-zinc-700 text-zinc-900 dark:text-zinc-50" >
             {" "}
             Tus datos no son editables, trabajaremos en ello proximamente.
           </p>
@@ -135,8 +135,8 @@ const FormularioEnlazar: React.FC<{ modal: any }> = ({ modal }) => {
                 setContrasena(e.target.value);
                 setContrasenaError("");
               }}
-              className={`w-full px-3 py-2 border ${
-                contrasenaError ? "border-red-500" : "border-gray-300"
+              className={`w-full px-3 py-2 border  bg-zinc-50 dark:bg-zinc-900 ${
+                contrasenaError ? "border-red-500" : "border-gray-300 dark:border-zinc-700"
               } rounded focus:outline-none focus:border-blue-500`}
             />
           </div>
@@ -155,8 +155,8 @@ const FormularioEnlazar: React.FC<{ modal: any }> = ({ modal }) => {
                 setConfirmacionContrasena(e.target.value);
                 setContrasenaError("");
               }}
-              className={`w-full px-3 py-2 border ${
-                contrasenaError ? "border-red-500" : "border-gray-300"
+              className={`w-full px-3 py-2 border  bg-zinc-50 dark:bg-zinc-900 ${
+                contrasenaError ? "border-red-500" : "border-gray-300 dark:border-zinc-700"
               } rounded focus:outline-none focus:border-blue-500`}
             />
             {contrasenaError && (

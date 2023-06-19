@@ -36,13 +36,13 @@ export const SquareSelect: React.FC = () => {
             value={inputValue}
             type="number"
             id="number-input"
-            className={`w-[46px] px-1 py-2 border rounded-md shadow-sm focus:outline-none ${
-              isNegative || isExceeded ? "border-red-600" : "border-gray-300"
+            className={`w-[46px] px-1 py-2 border bg-zinc-50 dark:bg-zinc-900 rounded-md shadow-sm focus:outline-none ${
+              isNegative || isExceeded ? "border-red-600" : "border-gray-300 dark:border-zinc-700"
             }`}
           />
           <div
             onClick={() => infiniteActive()}
-            className={`magic-button cursor-pointer ${isInfinite ? "border-[1px] text-white border-blue-500 bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500": ""} flex items-center justify-center border rounded-[6px] px-3 gap-1 h-[42px]`}
+            className={`magic-button cursor-pointer text-zinc-900 dark:text-zinc-50 border-zinc-50 dark:border-zinc-700 ${isInfinite ? "border-[1px]  border-blue-500 dark:border-yellow-500 bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500": ""} flex items-center justify-center border rounded-[6px] px-3 gap-1 h-[42px]`}
           >
             <span className="text-[32px]">&#8734;</span> Indefinido
           </div>

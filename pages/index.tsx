@@ -20,6 +20,7 @@ import dayjs from "dayjs";
 import { useUserContext } from "../context/UserContext";
 import { NavBar } from "../infra/navbar/TopNav";
 import { useThemeContext } from "../context/ThemeContext";
+import LoadingScreen from "../infra/LoadingScreen";
 
 interface PropsSegment {
   createdAt: string;
@@ -94,9 +95,10 @@ export default function MainScreen() {
   const fechaActual = dayjs();
   const horaMinutos = fechaActual.format("HH:mm");
   const modal2 = useModal();
+
   // useEffect(() => {}, []);
   if (isLoaded===false || isLogin===false)  { 
-    return <p>Cargando...</p>
+    return <LoadingScreen />
   }
     return (
       <div className="w-full anim-">

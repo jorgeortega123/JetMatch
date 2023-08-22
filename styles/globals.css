@@ -266,6 +266,8 @@ body::-webkit-scrollbar-thumb:hover {
   transition: all 1s;
 }
 
+
+
  @keyframes show-dark-mode-text-anim {
   20% { 
     opacity: 1;

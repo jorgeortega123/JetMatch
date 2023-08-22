@@ -159,7 +159,7 @@ const Login: React.FC<LoginProps> = ({}) => {
             <h2 className="text-[30px] font-bold text-center">Jet Match</h2>
             <div className="w-[220px]">
               <img
-              className={`h-full img-to-dark ${isDarkMode ? "filter-img": ""}`}
+              className={`h-full img-to-dark ${isDarkMode ? "filter-img-login": ""}`}
                 draggable={false}
                 src="https://res.cloudinary.com/ddcoxtm2v/image/upload/v1685672962/8._interface-testing_wc6toa.png"
                 alt=""

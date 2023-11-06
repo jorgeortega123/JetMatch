@@ -1,10 +1,13 @@
 import React, { useState } from "react";
+import { useFormContext } from "../../context/MainContext";
 
 const ColorSelect: React.FC<{
   setcolorSelected: (data: string) => void;
 }> = ({ setcolorSelected }) => {
-  const [selectedColor, setSelectedColor] = useState<string | null>(null);
-
+  const [selectedColorIndex, setSelectedColorIndex] = useState<number | null>(
+    null
+  );
+  const { color, setcolor } = useFormContext();
   // const colors = [
   //   '#FFC3A0',
   //   '#FFA8B2',
@@ -46,11 +49,10 @@ const ColorSelect: React.FC<{
     "bg-[#FF45F9]",
   ];
 
-  const handleColorSelect = (color: string) => {
-    setcolorSelected(color);
-    setSelectedColor(color);
+  const handleColorSelect = (color: string, index: number) => {
+    setcolor(color);
+    setSelectedColorIndex(index);
   };
-
   return (
     <div>
       <h4 className="text-sm">Color para representar el segmento</h4>
@@ -58,12 +60,15 @@ const ColorSelect: React.FC<{
         {colors.map((color, index) => (
           <div
             key={index}
-            className={` w-[36px] h-[36px] ${color} rounded-md m-1 cursor-pointer border-[1px] border-zinc-500`}
-            onClick={() => handleColorSelect(color)}
+            className={`w-[36px] h-[36px] ${color} rounded-md m-1 cursor-pointer  ${
+              selectedColorIndex === index
+                ? "border-[4px] border-green-500"
+                : ""
+            }`}
+            onClick={() => handleColorSelect(color, index)}
           />
         ))}
       </div>
-      {/* <p>Color seleccionado: {selectedColor}</p> */}
     </div>
   );
 };

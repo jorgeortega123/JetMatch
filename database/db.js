@@ -68,6 +68,7 @@ export const addNewSegment = async ({
   typeOfRegister,
   timeInterval,
   numbersInterval,
+  color,
 }) => {
   const res = await verifyUserFromCache();
   if (res) {
@@ -79,6 +80,7 @@ export const addNewSegment = async ({
     newSegment.set("typeOfRegister", typeOfRegister);
     newSegment.set("timeInterval", timeInterval);
     newSegment.set("numbersInterval", numbersInterval);
+    newSegment.set("color", color);
     newSegment.set("currentNumber", 0);
     // newSegment.set("updateTimerAt", fecha)
     newSegment.set("userId", tokenCache);

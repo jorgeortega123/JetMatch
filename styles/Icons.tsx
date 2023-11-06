@@ -1,9 +1,11 @@
 export default function Icons({
   icon,
   className,
+  stroke,
   text,
 }: {
   icon: string;
+  stroke?: string;
   className?: string;
   text?: string;
   fromNav?: boolean;
@@ -65,6 +67,66 @@ export default function Icons({
           viewBox="0 0 24 24"
         >
           <path d="M9.37 5.51A7.35 7.35 0 0 0 9.1 7.5c0 4.08 3.32 7.4 7.4 7.4c.68 0 1.35-.09 1.99-.27A7.014 7.014 0 0 1 12 19c-3.86 0-7-3.14-7-7c0-2.93 1.81-5.45 4.37-6.49zM12 3a9 9 0 1 0 9 9c0-.46-.04-.92-.1-1.36a5.389 5.389 0 0 1-4.4 2.26a5.403 5.403 0 0 1-3.14-9.8c-.44-.06-.9-.1-1.36-.1z" />
+        </svg>
+      );
+
+    case "info":
+      return (
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          className={className}
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+        >
+          <path
+            fill="currentColor"
+            d="M13 7.5a1 1 0 1 1-2 0a1 1 0 0 1 2 0Zm-3 3.75a.75.75 0 0 1 .75-.75h1.5a.75.75 0 0 1 .75.75v4.25h.75a.75.75 0 0 1 0 1.5h-3a.75.75 0 0 1 0-1.5h.75V12h-.75a.75.75 0 0 1-.75-.75Z"
+          />
+          <path
+            fill="currentColor"
+            d="M12 1c6.075 0 11 4.925 11 11s-4.925 11-11 11S1 18.075 1 12S5.925 1 12 1ZM2.5 12a9.5 9.5 0 0 0 9.5 9.5a9.5 9.5 0 0 0 9.5-9.5A9.5 9.5 0 0 0 12 2.5A9.5 9.5 0 0 0 2.5 12Z"
+          />
+        </svg>
+      );
+    case "loading":
+      return (
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          style={{
+            margin: 0,
+            background: "none",
+            display: "block",
+            shapeRendering: "auto",
+          }}
+          width="40px"
+          height="40px"
+          viewBox="0 0 100 100"
+          preserveAspectRatio="xMidYMid"
+          className={className}
+        >
+          <circle
+            cx="50"
+            cy="50"
+            r="30"
+            stroke={stroke || "#FFF"}
+            strokeWidth="10"
+            fill="none"
+          >
+            <animate
+              attributeName="stroke-dashoffset"
+              dur="1.3s"
+              repeatCount="indefinite"
+              from="0"
+              to="502"
+            ></animate>
+            <animate
+              attributeName="stroke-dasharray"
+              dur="1.3s"
+              repeatCount="indefinite"
+              values="150.6 100.4;1 250;150.6 100.4"
+            ></animate>
+          </circle>
         </svg>
       );
     default:

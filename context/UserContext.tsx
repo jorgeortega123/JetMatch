@@ -44,6 +44,7 @@ export const UserProvider: React.FC<React.PropsWithChildren<{}>> = ({
     password: "",
     verified: false,
   });
+  const [userData, setuserData] = useState()
   useEffect(() => {
     getInfoUser();
   }, [isLogin, mustReloadUser]);

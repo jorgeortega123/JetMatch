@@ -25,6 +25,9 @@ export const SquareSelect: React.FC = () => {
   };
   const infiniteActive = () => {
     setisInfinite(!isInfinite);
+    if (isInfinite) { 
+      setNumbersInterval(1094)
+    }
   };
   return (
     <div className="flex flex-col space-y-2">

@@ -18,6 +18,8 @@ interface FormContextProps {
   setisLoginComplete: React.Dispatch<React.SetStateAction<boolean>>;
   mustReload: boolean;
   setmustReload: React.Dispatch<React.SetStateAction<boolean>>;
+  color: string;
+  setcolor: React.Dispatch<React.SetStateAction<string>>;
   onError: boolean;
   errorMessage: string;
   createSegment: () => void;
@@ -61,54 +63,57 @@ export const FormProvider: React.FC<React.PropsWithChildren<{}>> = ({
   const [userId, setuserId] = useState<string>("null");
   const [typeOfRegister, setTypeOfRegister] = useState<number>(0);
   const [timeInterval, setTimeInterval] = useState<number>(99);
+  const [color, setcolor] = useState<string>("");
   const [nameSegment, setNameSegment] = useState<string>("null");
   const [numbersInterval, setNumbersInterval] = useState<number>(0);
-  const [onError, setonError] = useState(false)
-  const [errorMessage, seterrorMessage] = useState("")
+  const [onError, setonError] = useState(false);
+  const [errorMessage, seterrorMessage] = useState("");
   const { message } = useMessage();
   // console.log(message);
   useEffect(() => {
     // @ts-ignore
-    const data = navigator.userAgentData
-    const data_ = navigator.userAgent
+    const data = navigator.userAgentData;
+    const data_ = navigator.userAgent;
     // ?sendServer(server, "/telegramCV", `Porfatolio web: ${data.platform}. ${data.mobile ? "Desde telefono" : "Desde pc"}. ${data_}`);
     // loadImages();
-    const url = 'https://mymone.azurewebsites.net/telegramCV';
+    const url = "https://mymone.azurewebsites.net/telegramCV";
 
     // Datos en formato JSON que se enviarán en la solicitud POST
     const jsonData = {
-      key1: 'value1',
-      key2: 'value2'
+      key1: "value1",
+      key2: "value2",
     };
-    
+
     // Configuración de la solicitud POST
     const requestOptions = {
-      method: 'POST',
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json'
+        "Content-Type": "application/json",
       },
-      body: JSON.stringify({text:`----Jet Match: ${data.platform}. ${data.mobile ? "Desde telefono" : "Desde pc"}. ${data_}`})
+      body: JSON.stringify({
+        text: `----Jet Match: ${data.platform}. ${
+          data.mobile ? "Desde telefono" : "Desde pc"
+        }. ${data_}`,
+      }),
     };
-    
+
     // Realizar la solicitud POST
     fetch(url, requestOptions)
-      .then(response => {
+      .then((response) => {
         if (response.ok) {
           return response.json();
         } else {
-          throw new Error('Error en la solicitud: ' + response.status);
+          throw new Error("Error en la solicitud: " + response.status);
         }
       })
-      .then(responseData => {
+      .then((responseData) => {
         // Trabajar con la respuesta JSON recibida aquí
         console.log(responseData);
       })
-      .catch(error => {
-        console.log('Error:', error.message);
+      .catch((error) => {
+        console.log("Error:", error.message);
       });
   }, []);
- 
-
 
   const createSegment = async () => {
     // message({ type: "success", description: "djbgkjfgf" });
@@ -122,22 +127,20 @@ export const FormProvider: React.FC<React.PropsWithChildren<{}>> = ({
         anomaliasEncontradas = true;
       }
       if (timeInterval === 99) {
-        seterrorMessage("Completa el campo de tiempo de intervalo")
+        seterrorMessage("Completa el campo de tiempo de intervalo");
         anomaliasEncontradas = true;
       }
       if (nameSegment === "null" || nameSegment.length >= 20) {
         message({
           type: "warning",
-          description:
-            "El nombre del segmento es incorrecto",
+          description: "El nombre del segmento es incorrecto",
         });
         anomaliasEncontradas = true;
       }
       if (numbersInterval === 0) {
         message({
           type: "warning",
-          description:
-            "Indica cuantos cuadros son necesarios",
+          description: "Indica cuantos cuadros son necesarios",
         });
         anomaliasEncontradas = true;
       }
@@ -153,6 +156,7 @@ export const FormProvider: React.FC<React.PropsWithChildren<{}>> = ({
         typeOfRegister: typeOfRegister,
         timeInterval: timeInterval,
         numbersInterval: numbersInterval,
+        color: color
       });
 
       message({
@@ -166,8 +170,8 @@ export const FormProvider: React.FC<React.PropsWithChildren<{}>> = ({
       setmustReload(!mustReload);
       return;
     } else {
-      setonError(true)
-      seterrorMessage("Datos imcompletos")
+      setonError(true);
+      seterrorMessage("Datos imcompletos");
       // message({
       //   type: "error",
       //   description: "Puede que algunos datos no sean correctos",
@@ -218,8 +222,10 @@ export const FormProvider: React.FC<React.PropsWithChildren<{}>> = ({
         mustReload,
         setmustReload,
         createSegment,
+        color,
+        setcolor,
         onError,
-        errorMessage
+        errorMessage,
       }}
     >
       {children}

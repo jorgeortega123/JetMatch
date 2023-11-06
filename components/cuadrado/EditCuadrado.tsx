@@ -25,7 +25,7 @@ export default function EditCuadrado({
           type="text"
           className="text-sm dark:text-[#ccc] border rounded p-1 w-[70%]"
           value={nombre}
-          onChange={(e) => setNombre(e.target.value)} // Asigna el nuevo valor a 'nombre' al cambiar el input
+        //  onChange={(e) => setNombre(e.target.value)} // Asigna el nuevo valor a 'nombre' al cambiar el input
         />
       </div>
       <div className="flex justify-between items-center">
@@ -36,7 +36,7 @@ export default function EditCuadrado({
           type="text"
           className="text-sm dark:text-[#ccc] border rounded p-1 w-[70%]"
           value={typeTime}
-          onChange={(e) => setTypeTime(e.target.value)} // Asigna el nuevo valor a 'typeTime' al cambiar el input
+          //onChange={(e) => setTypeTime(e.target.value)} // Asigna el nuevo valor a 'typeTime' al cambiar el input
         />
       </div>
       <div className="flex justify-between items-center">
@@ -45,7 +45,7 @@ export default function EditCuadrado({
           type="text"
           className="text-sm dark:text-[#ccc] border rounded p-1 w-[70%]"
           value={ultimoEdit.slice(0, 16)}
-          onChange={(e) => setUltimoEdit(e.target.value)} // Asigna el nuevo valor a 'ultimoEdit' al cambiar el input
+         // onChange={(e) => setUltimoEdit(e.target.value)} // Asigna el nuevo valor a 'ultimoEdit' al cambiar el input
         />
       </div>
       <div className="flex justify-between items-center">
@@ -54,7 +54,7 @@ export default function EditCuadrado({
           type="text"
           className="text-sm dark:text-[#ccc] border rounded p-1 w-[70%]"
           value={final}
-          onChange={(e) => setUltimoEdit(e.target.value)} // Asigna el nuevo valor a 'ultimoEdit' al cambiar el input
+         // onChange={(e) => setUltimoEdit(e.target.value)} // Asigna el nuevo valor a 'ultimoEdit' al cambiar el input
         />
       </div>
       <div className="flex justify-between items-center">
@@ -63,7 +63,7 @@ export default function EditCuadrado({
           type="text"
           className="text-sm dark:text-[#ccc] border rounded p-1 w-[70%]"
           value={ultimoEdit.slice(0, 16)}
-          onChange={(e) => setUltimoEdit(e.target.value)} // Asigna el nuevo valor a 'ultimoEdit' al cambiar el input
+         // onChange={(e) => setUltimoEdit(e.target.value)} // Asigna el nuevo valor a 'ultimoEdit' al cambiar el input
         />
       </div>
     </div>

@@ -7,19 +7,19 @@ const OrdenarPorDropdown: React.FC<{
   const [opcionSeleccionada, setOpcionSeleccionada] = useState<string>("");
   const dropdownRef = useRef(null);
 
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-        setMostrarDropdown(false);
-      }
-    };
+//   useEffect(() => {
+//     const handleClickOutside = (event) => {
+//       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+//         setMostrarDropdown(false);
+//       }
+//     };
 
-    document.addEventListener("mousedown", handleClickOutside);
+//     document.addEventListener("mousedown", handleClickOutside);
 
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, []);
+//     return () => {
+//       document.removeEventListener("mousedown", handleClickOutside);
+//     };
+//   }, []);
   const handleOpcionSeleccionada = (opcion: string) => {
     setOpcionSeleccionada(opcion);
     onOrdenarPorChange(opcion);

@@ -55,7 +55,7 @@ export const NumberSelect: React.FC = () => {
       options.push(
         <div
           key={i}
-          className="py-1 hover:bg-gray-100 cursor-pointer px-2 rounded-[6px]"
+          className="py-1 hover:bg-zinc-800  cursor-pointer px-2 rounded-[6px]"
           onClick={() => handleNumberClick(i, arrtext[i].value)}
         >
           {arrtext[i]?.text}
@@ -84,7 +84,7 @@ export const NumberSelect: React.FC = () => {
         </svg>
       </button>
       {showOptions && (
-        <div className="absolute z-[1] top-full left-0 w-full py-2 px-2 mt-1 bg-white border border-blue-500 dark:bg-slate-900 rounded-md shadow-sm">
+        <div className="absolute z-[1] top-full  left-0 w-full py-2 px-2 mt-1 bg-white border border-blue-500 dark:bg-slate-900 rounded-md shadow-sm">
           {generateNumberOptions()}
         </div>
       )}

@@ -80,7 +80,7 @@ export const addNewSegment = async ({
     newSegment.set("typeOfRegister", typeOfRegister);
     newSegment.set("timeInterval", timeInterval);
     newSegment.set("numbersInterval", numbersInterval);
-    newSegment.set("color", color);
+    newSegment.set("colorSegment", color);
     newSegment.set("currentNumber", 0);
     // newSegment.set("updateTimerAt", fecha)
     newSegment.set("userId", tokenCache);
@@ -165,6 +165,24 @@ export const fetchObjectById = async (objectId) => {
   }
 };
 
+export const eliminarObjetoPorId = async (objetoId) => {
+  const query = new Parse.Query("counts");
+
+  try {
+    const objeto = await query.get(objetoId);
+    await objeto.destroy();
+
+    console.log(`Objeto con ID ${objetoId} eliminado exitosamente.`);
+    return {
+      value: true,
+      data: ` Objeto con ID ${objetoId} eliminado exitosamente.`,
+    };
+  } catch (error) {
+    console.error("Error al eliminar el objeto:", error);
+    return { value: false, data: "Error al eliminar el objeto:" + error,  };
+  }
+};
+
 // export const formAccount = async (data) => {
 //   const tokenCache = localStorage.getItem("token");
 //   var res = await verifyUserFromCache();
@@ -237,7 +255,7 @@ export const loginByEmail = async (email, pass) => {
     onError = true;
   }
 
-  console.log(onError, userId)
+  console.log(onError, userId);
   return onError;
 };
 

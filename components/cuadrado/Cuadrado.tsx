@@ -13,6 +13,7 @@ interface SquareProps {
   inicial: number;
   final: number;
   id: string;
+  color: string;
 }
 
 export const Cuadrado: React.FC<SquareProps> = ({
@@ -22,6 +23,7 @@ export const Cuadrado: React.FC<SquareProps> = ({
   inicial,
   final,
   id,
+  color,
 }) => {
   const modal = useModal();
   const { isDarkMode } = useThemeContext();
@@ -39,7 +41,7 @@ export const Cuadrado: React.FC<SquareProps> = ({
     // width: "20px",
     // height: "20px",
     const estilo = {
-      backgroundColor: isPintado ? "#75CCEB" : "transparent",
+      backgroundColor: isPintado ? "" : "transparent",
       border: isPintado
         ? "1px solid black"
         : ` ${isDarkMode ? "1px solid  #3f3f46" : "1px solid #ccc"}`,
@@ -49,14 +51,19 @@ export const Cuadrado: React.FC<SquareProps> = ({
     //   cuadrados.push(<div key={i} style={estilo}></div>);
 
     //#00ff19
+    //#75cceb
     cuadrados.push(
-      <div key={i} style={estilo} className="cuadricula-item"></div>
+      <div
+        key={i}
+        style={estilo}
+        className={`cuadricula-item ${isPintado ? color : ""} `}
+      ></div>
     );
   }
 
   return (
     <>
-      <Modal modal={modal} title={`Editar "${nombre}"`}>
+      <Modal modal={modal} title={`Editar segmento`}>
         <EditCuadrado
           nombre={nombre}
           typeTime={typeTime}
@@ -64,6 +71,7 @@ export const Cuadrado: React.FC<SquareProps> = ({
           id={id}
           final={final}
           inicial={inicial}
+          color={color}
         />
       </Modal>
       <div className="border-[1px] dark:border-none text-black dark:text-zinc-50 rounded-[6px] shadow-sm  p-2 bg-zinc-50 dark:bg-zinc-800 ">

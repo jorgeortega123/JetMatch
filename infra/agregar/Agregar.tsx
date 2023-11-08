@@ -13,24 +13,7 @@ const Agregar: React.FC<Props> = ({ setshowAddSegment, modal2 }) => {
   const { setNumbersInterval, createSegment } = useFormContext();
   const [colorSelected, setcolorSelected] = useState("transparent");
   useEffect(() => {
-    // var a =  {
-    //   formData,
-    //   setFormData,
-    //   userId,
-    //   typeOfRegister,
-    //   setTypeOfRegister,
-    //   timeInterval,
-    //   setTimeInterval,
-    //   nameSegment,
-    //   setNameSegment,
-    //   numbersInterval,
-    //   setNumbersInterval,
-    //   isLoginComplete,
-    //   setisLoginComplete,
-    //   mustReload,
-    //   setmustReload,
-    //   createSegment,
-    // }
+
   }, []);
 
   return (

@@ -158,7 +158,6 @@ export const FormProvider: React.FC<React.PropsWithChildren<{}>> = ({
         numbersInterval: numbersInterval,
         color: color
       });
-
       message({
         type: "success",
         description: "Perfecto, se acaba de crear una nueva seccion",

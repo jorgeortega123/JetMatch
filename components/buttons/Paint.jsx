@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import dayjs from "dayjs";
 import { useFormContext } from "../../context/MainContext";
 import { updateSegment } from "../../database/db";
+import Icons from "../../styles/Icons";
 var utc = require("dayjs/plugin/utc");
 dayjs.extend(utc);
 
@@ -82,12 +83,12 @@ export const ButtonWithLoading = ({ typeTime, ultimoEdit, inicial, id }) => {
 
   return (
     <div className="p-[2px] relative container-paint">
-      <div className="opacity-0 absolute bottom-[130%] w-full text-[12px] text-center p-2 rounded-[6px] bg-zinc-50 dark:bg-zinc-800 modal-button-paint shadow-md dark:shadow-zinc-700 ">
+      {/* <div className="opacity-0 absolute bottom-[130%] w-full text-[12px] text-center p-2 rounded-[6px] bg-zinc-50 dark:bg-zinc-800 modal-button-paint shadow-md dark:shadow-zinc-700 ">
         <p className="">
           <span className="text-zinc-900 dark:text-zinc-50">Faltan:</span> <span className="text-zinc-800 dark:text-zinc-50">{tiempoRestanteDetallado}</span> 
           <span className="text-zinc-900 dark:text-zinc-50"> para registrar un nuevo cambio</span>
         </p>{" "}
-      </div>
+      </div> */}
       <div
         style={{
           background:
@@ -108,42 +109,7 @@ export const ButtonWithLoading = ({ typeTime, ultimoEdit, inicial, id }) => {
         )}
 
         {loading ? (
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            style={{
-              margin: 0,
-              background: "none",
-              display: "block",
-              shapeRendering: "auto",
-            }}
-            width="40px"
-            height="40px"
-            viewBox="0 0 100 100"
-            preserveAspectRatio="xMidYMid"
-          >
-            <circle
-              cx="50"
-              cy="50"
-              r="30"
-              stroke="#75CCEB"
-              strokeWidth="10"
-              fill="none"
-            >
-              <animate
-                attributeName="stroke-dashoffset"
-                dur="1.3s"
-                repeatCount="indefinite"
-                from="0"
-                to="502"
-              ></animate>
-              <animate
-                attributeName="stroke-dasharray"
-                dur="1.3s"
-                repeatCount="indefinite"
-                values="150.6 100.4;1 250;150.6 100.4"
-              ></animate>
-            </circle>
-          </svg>
+          <Icons icon="loading" />
         ) : (
           <svg
             className="z-[1] stroke-black dark:stroke-white"

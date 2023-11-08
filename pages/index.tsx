@@ -32,6 +32,7 @@ interface PropsSegment {
   timeInterval: number;
   numbersInterval: number;
   nameSegment: string;
+  colorSegment: string
   updatedAt: string;
   userId: string;
   updateTimerAt: string;
@@ -55,6 +56,7 @@ export default function MainScreen() {
       objectId: "DTGa0f32l9",
       timeInterval: 0,
       typeOfRegister: 0,
+      colorSegment: "#fff",
       updatedAt: "2023-05-23T03:12:35.038Z",
       userId: "b77e18",
       updateTimerAt: "",
@@ -118,6 +120,7 @@ export default function MainScreen() {
                 nombre={data.nameSegment}
                 inicial={data.currentNumber}
                 final={data.numbersInterval}
+                color={data.colorSegment}
               />
             ))}
           </div>

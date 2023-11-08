@@ -25,8 +25,12 @@ export const SquareSelect: React.FC = () => {
   };
   const infiniteActive = () => {
     setisInfinite(!isInfinite);
-    if (isInfinite) { 
+    if (!isInfinite) { 
       setNumbersInterval(1094)
+      setInputValue(1094);
+    } else { 
+      setNumbersInterval(0)
+      setInputValue(0);
     }
   };
   return (
@@ -39,7 +43,7 @@ export const SquareSelect: React.FC = () => {
             value={inputValue}
             type="number"
             id="number-input"
-            className={`w-[46px] px-1 py-2 border bg-zinc-50 dark:bg-zinc-900 rounded-md shadow-sm focus:outline-none ${
+            className={`w-[76px] px-1 py-2 border bg-zinc-50 dark:bg-zinc-900 rounded-md shadow-sm focus:outline-none ${
               isNegative || isExceeded ? "border-red-600" : "border-gray-300 dark:border-zinc-700"
             }`}
           />
